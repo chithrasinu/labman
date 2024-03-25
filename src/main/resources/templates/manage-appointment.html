@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Appointment Status</title>
+</head>
+<body>
+<div th:fragment="content">
+    <div class="mb-3">
+        <h3>Manage Appointment</h3>
+    </div>
+    <div th:if="${param.not_found}">
+        <div class="alert alert-info">
+            Appointment not found. Please check your confirmation code.
+        </div>
+    </div>
+    <div th:if="${param.success}">
+        <div class="alert alert-info">
+            Appointment updated successfully.
+        </div>
+    </div>
+    <div class="card">
+        <h5 class="card-header">Find an appointment</h5>
+        <div class="card-body">
+            <form th:action="@{/appointment/find(id=${id})}" method="get">
+                <label for="id">Confirmation Code:</label>
+                <input type="text" id="id" name="id" required>
+                <button type="submit">Find Appointment</button>
+            </form>
+        </div>
+    </div>
+    <form method="POST"
+          class="needs-validation"
+          novalidate=""
+          autocomplete="off"
+          th:action="@{/appointment/save}"
+          th:object="${appointment}">
+        <div th:if="${appointment.patientName}">
+        <div class="card">
+                <h5 class="card-header">Appointment Information</h5>
+                <div class="card-body">
+                    <div th:if="${param.success}">
+                        <div class="alert alert-info">
+                            Successfully updated an appointment.
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Who</th>
+                                <th scope="col">When</th>
+                                <th scope="col">Where</th>
+                                <th scope="col">Test</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <input type="hidden" id="appointmentId" name="id"
+                                       th:value="${appointment.id}">
+                                <input type="hidden" id="userId" name="userId"
+                                       th:value="${appointment.userId}">
+                                <input type="hidden" id="patientName" name="patientName"
+                                       th:value="${appointment.patientName}">
+                                <input type="hidden" id="appointmentDate" name="appointmentDate"
+                                       th:value="${appointment.appointmentDate}">
+                                <input type="hidden" id="appointmentTime" name="appointmentTime"
+                                       th:value="${appointment.appointmentTime}">
+                                <input type="hidden" id="location" name="location" th:value="${appointment.location}">
+                                <input type="hidden" id="testName" name="testName" th:value="${appointment.testName}">
+
+                                <td th:text="${appointment.patientName}"></td>
+                                <td th:text="${appointment.appointmentDate + ' ' + appointment.appointmentTime}"></td>
+                                <td th:text="${appointment.location}"></td>
+                                <td th:text="${appointment.testName}"></td>
+                                <td>
+                                    <select id="status" name="status" required th:field="*{status}">
+                                        <option value="">Select Status</option>
+                                        <option value="SCHEDULED">SCHEDULED</option>
+                                        <option value="CHECKED_IN">CHECKED_IN</option>
+                                        <option value="SAMPLE_COLLECTED">SAMPLE_COLLECTED</option>
+                                        <option value="REVIEW">RESULT_REVIEW</option>
+                                        <option value="RESULT_READY">RESULT_READY</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <button type="submit">Update</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

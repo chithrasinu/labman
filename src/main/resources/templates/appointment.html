@@ -1,0 +1,100 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<div th:fragment="content">
+    <div class="mb-3">
+        <h3>Schedule Appointment</h3>
+    </div>
+    <div class="card shadow-lg">
+        <div class="card-body p-5">
+            <div th:if="${param.success}">
+                <div class="alert alert-info">
+                    Successfully scheduled an appointment
+                </div>
+            </div>
+            <form method="POST"
+                  class="needs-validation"
+                  novalidate=""
+                  autocomplete="off"
+                  th:action="@{/appointment/user/save}"
+                  th:object="${appointment}">
+
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{status}" />
+
+                <div class="mb-3">
+                    <input id="patient_name" type="text" class="form-control" name="patient_name" value="" required
+                           autofocus placeholder="Patient Name" th:field="*{patientName}"/>
+                    <div class="invalid-feedback">
+                        Full Name is required
+                    </div>
+                </div>
+
+                <!-- Hidden input field for locations object -->
+                <!--                <input type="hidden" name="location" th:value="${location}"/>-->
+
+                <div class="mb-3">
+                    <select class="form-select" id="location" name="location" required th:field="*{location}">
+                        <option value="" selected>Select Location</option>
+                        <option th:each="location : ${locations}" th:value="${location.location}"
+                                th:text="${location.location}"
+                                th:selected="${location.location == appointment.location}"></option>
+                    </select>
+
+                    <div class="invalid-feedback">
+                        Lab location is required
+                    </div>
+                </div>
+
+                <!-- Hidden input field for locations object -->
+                <!--                <input type="hidden" name="testName" th:value="${testName}"/>-->
+
+                <div class="mb-3">
+                    <select class="form-select" id="test" name="test" required th:field="*{testName}">
+                        <option value="" selected>Select Test</option>
+                        <option th:each="test : ${tests}" th:value="${test.testName}"
+                                th:text="${test.testName}"
+                                th:selected="${test.testName == appointment.testName}"></option>
+                    </select>
+
+                    <div class="invalid-feedback">
+                        Test selection is required
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <input id="startDate" class="form-control" type="date" th:field="*{appointmentDate}"
+                           th:attr="value=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"/>
+                    <div id="appointmentsContainer" class="mt-4"></div>
+                </div>
+                <!--                <input type="hidden" id="appointmentTime" name="appointmentTime" th:value="${selectedTimeInput}"/>-->
+
+                <div class="mb-3">
+                    <div class="appointment-times">
+                        <div class="mb-3">
+                            <p>Select Appointment Time:</p>
+                        </div>
+                        <div class="radio-buttons">
+                            <label th:each="time : ${appointmentTimes}" class="radio-button-label"
+                                   style="margin-right: 10px;">
+                                <input type="radio" name="appointmentTime" th:value="${time}"
+                                       th:checked="${time == appointmentTime}"/>
+                                <span th:text="${time}"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="align-items-center d-flex">
+                        <button type="submit" class="btn btn-primary ms-auto">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

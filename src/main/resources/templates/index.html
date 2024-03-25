@@ -1,0 +1,346 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>labman - Quality Laboratory Service</title>
+
+    <!--
+      - custom css link
+    -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!--
+      - google font link
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Roboto:wght@400;500;600&display=swap"
+            rel="stylesheet">
+</head>
+
+<body id="top">
+
+<!--
+  - #HEADER
+-->
+
+<header class="header">
+
+    <div class="header-top">
+        <div class="container">
+
+            <ul class="contact-list">
+
+                <li class="contact-item">
+                    <ion-icon name="mail-outline"></ion-icon>
+
+                    <a href="mailto:info@labman.com" class="contact-link">info@labman.com</a>
+                </li>
+
+                <li class="contact-item">
+                    <ion-icon name="call-outline"></ion-icon>
+
+                    <a href="tel:+9487453212" class="contact-link">+1 (987)654-3210</a>
+                </li>
+
+            </ul>
+
+            <ul class="social-list">
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-youtube"></ion-icon>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="header-bottom" data-header>
+        <div class="container">
+
+            <a th:href="@{/}" class="logo">labman.</a>
+
+            <nav class="navbar container" data-navbar>
+                <ul class="navbar-list">
+
+                    <li>
+                        <a href="#home" class="navbar-link" data-nav-link>Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#service" class="navbar-link" data-nav-link>Services</a>
+                    </li>
+
+                    <li>
+                        <a href="#about" class="navbar-link" data-nav-link>About Us</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="navbar-link" data-nav-link>Contact</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <a th:href="@{/login}" class="btn">Book appointment</a>
+
+            <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+                <ion-icon name="menu-sharp" aria-hidden="true" class="menu-icon"></ion-icon>
+                <ion-icon name="close-sharp" aria-hidden="true" class="close-icon"></ion-icon>
+            </button>
+
+        </div>
+    </div>
+
+</header>
+
+
+<main>
+    <article>
+        <section class="section hero" id="home" aria-label="hero">
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <p class="section-subtitle">Welcome To labman</p>
+
+                    <h1 class="h1 hero-title">Empowering Health through Accurate Diagnostics</h1>
+
+                    <p class="hero-text">
+                        "Providing comprehensive laboratory services with state-of-the-art technology and a dedicated team of experts, delivering accurate and timely results for better healthcare outcomes."
+                    </p>
+                </div>
+
+                <figure class="hero-banner">
+                    <img th:src="@{/imgs/lab-image.jpg}" width="587" height="839" alt="hero banner" class="w-100">
+                </figure>
+            </div>
+        </section>
+
+        <!--
+          - #SERVICE
+        -->
+
+        <section class="section service" id="service" aria-label="service">
+            <div class="container">
+
+                <p class="section-subtitle text-center">Our Services</p>
+
+                <h2 class="h2 section-title text-center">What We Provide</h2>
+
+                <ul class="service-list">
+
+                    <li>
+                        <div class="service-card">
+                            <div>
+                                <h3 class="h3 card-title">Flu Tests</h3>
+
+                                <p class="card-text">
+                                    Our laboratory provides accurate and reliable flu testing services.
+                                    We utilize advanced diagnostic techniques to detect influenza
+                                    viruses and provide timely results.
+                                </p>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="service-card">
+                            <div>
+                                <h3 class="h3 card-title">Sample Collections</h3>
+
+                                <p class="card-text">
+                                    Specimen Collection: Various types of biological specimens such as blood,
+                                    urine, saliva, tissue samples, or swabs collected from patients for
+                                    diagnostic testing and analysis.
+                                </p>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="service-card">
+                            <div>
+                                <h3 class="h3 card-title">Health Checkup</h3>
+
+                                <p class="card-text">
+                                    Our laboratory offers comprehensive health checkup services aimed at assessing
+                                    an individual's overall health status and detecting potential health risks.
+                                </p>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="service-card">
+                            <div>
+                                <h3 class="h3 card-title">Online Results</h3>
+
+                                <p class="card-text">
+                                    At our laboratory, we provide the convenience of accessing your test results
+                                    online.
+                                </p>
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </section>
+    </article>
+</main>
+
+
+<!--
+  - #FOOTER
+-->
+
+<footer class="footer">
+
+    <div class="footer-top section">
+        <div class="container">
+
+            <div class="footer-brand">
+
+                <a href="#" class="logo">labman.</a>
+
+                <p class="footer-text">
+                    "Your Trusted Partner for Reliable Laboratory Services: At labman,
+                    we are dedicated to providing accurate and timely laboratory services
+                    to support your health and well-being"
+                </p>
+
+                <div class="schedule">
+                    <div class="schedule-icon">
+                        <ion-icon name="time-outline"></ion-icon>
+                    </div>
+
+                    <span class="span">
+              Monday - Saturday:<br>
+              9:00am - 5.00Pm
+            </span>
+                </div>
+
+            </div>
+
+            <ul class="footer-list">
+
+                <li>
+                    <p class="footer-list-title">Other Links</p>
+                </li>
+
+                <li>
+                    <a href="#" class="footer-link">
+                        <ion-icon name="add-outline"></ion-icon>
+
+                        <span class="span">Home</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="footer-link">
+                        <ion-icon name="add-outline"></ion-icon>
+
+                        <span class="span">About Us</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="footer-link">
+                        <ion-icon name="add-outline"></ion-icon>
+
+                        <span class="span">Services</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+
+            <p class="copyright">
+                &copy; 2024 All Rights Reserved by LabMan
+            </p>
+
+            <ul class="social-list">
+
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+</footer>
+
+
+<!--
+  - #BACK TO TOP
+-->
+
+<a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="caret-up" aria-hidden="true"></ion-icon>
+</a>
+
+
+<!--
+  - custom js link
+-->
+<script src="../static/js/script.js" defer></script>
+
+<!--
+  - ionicon link
+-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

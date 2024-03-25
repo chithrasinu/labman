@@ -1,5 +1,8 @@
 # labman
 
+## Git Repo
+*https://github.com/chithrasinu/labman.git*
+
 ## About
 This is a laboratory management system that helps to manage laboratory and patient appointments. The system has 3 roles
 1. ADMIN
